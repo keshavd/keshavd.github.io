@@ -1,0 +1,97 @@
+
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN'
+       'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml' lang='en' xml:lang='en'>
+<head>
+   <title>UHN TGH BioBank Sample Request Form</title>
+   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+   <style>
+   #title{
+    font-family: 'Open Sans', serif;
+    font-weight: 600;
+    font-size: 150%;
+    margin-left: 40px
+   }
+   #description{
+    font-family: 'Open Sans', serif;
+    font-weight: 400;
+    font-size: 100%;
+    margin-left: 40px;
+    word-break: break-word;
+   }
+   .variablename{
+    font-family: 'Open Sans', serif; font-weight: 400;
+    font-size: 90%;
+    margin-left: 30%;"
+   }
+   </style>
+</head>
+<body>
+
+<img src="images/logo.png" alt="UHN Toronto General Hospital">
+<svg width=100% height="20"><rect width=100% height="20" style="fill:rgb(22,107,180);" />
+</svg>
+
+<br>
+<div id='title'>BioBank Sample Request Form</div>
+<br>
+<div id="description">Fill out the form below for your sample request. After submission, you will provided with a tracking number in order to follow the progress of your request. Please include an email address.</div> 
+<svg style="width:90%;height:0;border-top:2px dotted #136bb5;font-size:0; margin-left: 40px;">-</svg>
+<br>
+<br>
+<form action="request_submit.php" method="post">
+<div class = variablename>REB: 
+  <input name = 'reb' type="text" style="-webkit-box-shadow: inset 2px 2px 2px 0px #dddddd;margin-left: 195px"></div>
+ <br> 
+<div style="font-family: 'Open Sans', serif; font-weight: 400; font-size: 90%; margin-left: 30%;">Tissue Site: 
+  <input name = 'tissueSite' type="text" style="-webkit-box-shadow: inset 2px 2px 2px 0px #dddddd;margin-left: 150px"></div>
+<br>
+<div style="font-family: 'Open Sans', serif; font-weight: 400; font-size: 90%; margin-left: 30%;">Pathology Status:
+ <select  style="margin-left:106px;" name='pathStatus'>
+      <option value='Tumor'>Tumor
+      <option value='Abnormal'>Abnormal
+      <option value='Normal'>Normal
+   </select></div> 
+<br>
+<div style="font-family: 'Open Sans', serif; font-weight: 400; font-size: 90%; margin-left: 30%; margin-right: 60px;">
+   Specimen Type: <select style="margin-left:117px;" name='specimenType'> 
+      <option value='Body Cavity Fluid'>Body Cavity Fluid
+      <option value='Core'>Core
+      <option value='DNA'>DNA
+      <option value='Fixed Cell Block'>Fixed Cell Block
+      <option value='Fixed Tissue'>Fixed Tissue
+      <option value='Fixed Tissue Block'>Fixed Tissue Block
+      <option value='Fixed Tissue Slide'>Fixed Tissue Slide
+      <option value='Fresh Tissue'>Fresh Tissue
+      <option value='Frozen Cell Pellet'>Frozen Cell Pellet
+      <option value='Frozen Tissue'>Frozen Tissue
+      <option value='Frozen Tissue Block'>Frozen Tissue Block
+      <option value='Frozen Tissue Slide'>Frozen Tissue Slide
+      <option value='Microdissected'>Microdissected
+      <option value='Not Specified'>Not Specified
+      <option value='Pericardial Fluid'>Pericardial Fluid
+      <option value='Plasma'>Plasma
+      <option value='RNA'>RNA
+      <option value='Serum'>Serum
+      <option value='Slide'>Slide
+      <option value='Supernatant'>Supernatant
+      <option value='Whole Blood'>Whole Blood
+      <option value='Whole Bone Marrow'>Whole Bone Marrow
+   </select></div>
+<br>
+<div style="font-family: 'Open Sans', serif; font-weight: 400; font-size: 90%; margin-left: 30%;">Number of Specimens: <input type="text" name='specimenNumber' style="-webkit-box-shadow: inset 2px 2px 2px 0px #dddddd; margin-left: 70px"></div>
+<br>
+<div style="font-family: 'Open Sans', serif; font-weight: 400; font-size: 90%; margin-left: 30%;">Name of Study Pathologist: <input type="text" name="pathologist" style="-webkit-box-shadow: inset 2px 2px 2px 0px #dddddd; margin-left: 40px"></div>
+<br>
+<div style="font-family: 'Open Sans', serif; font-weight: 400; font-size: 90%; margin-left: 30%;">ID:  <select name='idType'>  
+  <option value='ppid'>PPID
+  <option value='mrn'>Medical Record Number
+  <option value='barcode'>Barcode
+  </select> <input type="text" name="idNumber" style="-webkit-box-shadow: inset 2px 2px 2px 0px #dddddd; margin-left: 45px"></div>
+<br>
+<div style="font-family: 'Open Sans', serif; font-weight: 400; font-size: 90%; margin-left: 30%;">Email: <input type="text" name="email" style="-webkit-box-shadow: inset 2px 2px 2px 0px #dddddd;margin-left: 180px"></div>
+<br><br>
+  <input type='submit' value='Submit' style="margin-left: 40%;"> <input type='reset' value='Clear'>  </form>
+</body>
+</html>
