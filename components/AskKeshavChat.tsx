@@ -127,6 +127,7 @@ const stopWords = new Set([
 
 const synonyms = new Map<string, string[]>([
   ["made", ["made", "founded", "built", "created", "established", "building"]],
+  ["building", ["building", "building", "founder", "built", "founded", "created"]],
   ["founder", ["founder", "made", "founded", "built", "created"]],
   ["built", ["built", "made", "founded", "created", "developed"]],
   ["created", ["created", "made", "founded", "built"]],
@@ -134,7 +135,8 @@ const synonyms = new Map<string, string[]>([
   ["experience", ["experience", "worked", "work", "role", "job"]],
   ["focus", ["focus", "focused", "focus", "working", "building"]],
   ["knowledge", ["knowledge", "know", "knowing", "expertise", "understand"]],
-  ["graph", ["graph", "kg", "knowledge", "graphs"]]
+  ["graph", ["graph", "kg", "knowledge", "graphs"]],
+  ["current", ["current", "now", "focus", "building", "working"]]
 ]);
 
 function expandSynonyms(term: string): string[] {
