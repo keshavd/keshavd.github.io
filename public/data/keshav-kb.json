@@ -1,0 +1,93 @@
+{
+  "person": {
+    "id": "keshav",
+    "name": "Keshav Dial",
+    "headline": "Doctor.Builder.Entrepreneur",
+    "current_focus": [
+      "EndoBio AI",
+      "AI-native agriculture",
+      "molecular sensing",
+      "agentic systems"
+    ]
+  },
+  "entities": [
+    {
+      "id": "endobio",
+      "type": "company",
+      "name": "EndoBio AI",
+      "summary": "An AI-native agricultural intelligence platform that detects biological crop signals before visible symptoms appear.",
+      "tags": ["startup", "agriculture", "AI", "sensors"]
+    },
+    {
+      "id": "beauty",
+      "type": "dog",
+      "name": "Beauty",
+      "summary": "Keshav's dog, featured on the homepage.",
+      "tags": ["personal", "homepage"]
+    },
+    {
+      "id": "sanofi",
+      "type": "experience",
+      "name": "Sanofi",
+      "summary": "Keshav worked on AI and machine learning systems in pharmaceutical R&D.",
+      "tags": ["career", "AI", "biotech"]
+    }
+  ],
+  "relationships": [
+    {
+      "source": "keshav",
+      "target": "endobio",
+      "type": "building",
+      "summary": "Keshav is building EndoBio AI as his current company."
+    },
+    {
+      "source": "keshav",
+      "target": "beauty",
+      "type": "cares_for",
+      "summary": "Beauty is part of Keshav's personal life and homepage identity."
+    },
+    {
+      "source": "sanofi",
+      "target": "endobio",
+      "type": "influenced",
+      "summary": "Keshav's AI and biotech experience helped shape his path into AI-native biological systems."
+    }
+  ],
+  "memories": [
+    {
+      "id": "why-endobio",
+      "title": "Why EndoBio exists",
+      "text": "Keshav believes agriculture detects disease too late. EndoBio is based on the idea that plants, pathogens, and soil systems emit molecular signals before visible symptoms appear.",
+      "entities": ["keshav", "endobio"],
+      "tags": ["origin", "agriculture", "biology"]
+    },
+    {
+      "id": "current-chapter",
+      "title": "Current chapter",
+      "text": "Keshav is currently focused on building EndoBio AI, combining molecular sensing, knowledge graphs, edge AI, and agricultural decision support.",
+      "entities": ["keshav", "endobio"],
+      "tags": ["current", "startup", "builder"]
+    },
+    {
+      "id": "favorite-colour",
+      "title": "Favourite colour",
+      "text": "Keshav's favourite colour is green.",
+      "entities": ["keshav"],
+      "tags": ["personal", "colour", "color", "green", "random fact"]
+    },
+    {
+      "id": "breakfast-waffles-chicken",
+      "title": "Breakfast fact",
+      "text": "Keshav ate waffles and chicken with bbq and maple syrup for breakfast.",
+      "entities": ["keshav"],
+      "tags": ["personal", "breakfast", "waffles", "chicken", "bbq", "maple syrup", "random fact"]
+    },
+    {
+      "id": "two-fridges",
+      "title": "Kitchen fridge fact",
+      "text": "Keshav has two fridges in his kitchen.",
+      "entities": ["keshav"],
+      "tags": ["personal", "kitchen", "fridges", "fridge", "random fact"]
+    }
+  ]
+}

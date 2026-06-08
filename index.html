@@ -1,71 +1,20 @@
-<html>
-<head>
-<title>Keshav Dial</title>
-<link href='https://fonts.googleapis.com/css?family=Lora:700italic' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
-<style>
-body{
-	background-image:url("beauty2.jpg");
-	background-size: cover;
-	background-position: center;
-}
-#Info{
-	background-color: #fff;
-    	background-color: rgba(255,255,255,0.5);
-}
-#name{
-	font-family: 'Lora', serif;
-	font-weight: 700;
-	font-style: italic;
-	font-size: 250%;
-}
-#tagline{
-	font-family: 'Open-Sans', sans-serif;
-	font-weight: 200;
-}
-#links{
-	text-align: right;
-	top: 55;
-	right:30;
-	position: fixed;
-	font-family: 'Lora', serif;
-	font-weight: 700;
-	font-style: italic;
-}
-a:link{
-	color: black;
-	text-decoration: none;
-}
-a:visited{
-	color:black;
-	text-decoration: none;
-}
-.link:hover{
-	color:white;
-	text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;  
-}
-</style>
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171544923-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-171544923-1');
-</script>
-</head>
-<body>
-	<div id="Info">
-		<a id="name">Keshav Dial</a><br>
-		<a id="tagline">Programmer.Designer.Data Scientist</a>
-	<div id="links">
-		<a class="link", href="http://www.twitter.com/keshavdial">twitter</a>
-		<a class="link", href="http://www.github.com/keshavd">github</a>
-		<a class="link", href="https://ca.linkedin.com/in/keshavdial">linkedin</a>
-		<a class="link", href="mailto:keshav.dial@gmail.com?Subject=GitHub%20Redirected%20Email">email</a>
-		<br><br>
-	</div>
-	</div>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Doctor. Builder. Entrepreneur" />
+    <title>Keshav Dial</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171544923-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-171544923-1');
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
