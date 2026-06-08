@@ -7,12 +7,26 @@ type MemoryGraph = {
     name: string;
     headline: string;
     current_focus: string[];
+    bio?: string;
+    location?: string;
+    contact?: string;
   };
   entities: Array<{
     id: string;
     type: string;
     name: string;
     summary: string;
+    description?: string;
+    founder?: string;
+    stage?: string;
+    problem_statement?: string;
+    vision?: string;
+    key_technologies?: string[];
+    institution?: string;
+    field?: string;
+    owner?: string;
+    builder?: string;
+    scope?: string;
     tags: string[];
   }>;
   relationships: Array<{
@@ -189,14 +203,23 @@ function graphToSearchDocuments(memoryGraph: MemoryGraph[]) {
     const entityDocuments = graph.entities.map((entity) => ({
       id: entity.id,
       label: `Entity: ${entity.name}`,
-      text: `${entity.name} (${entity.type}): ${entity.summary}`,
+      text: `${entity.name} (${entity.type}): ${entity.description || entity.summary}`,
       searchableText: [
         entity.id,
         entity.type,
         entity.name,
         entity.summary,
+        entity.description || "",
+        entity.founder || "",
+        entity.builder || "",
+        entity.field || "",
+        entity.stage || "",
+        entity.vision || "",
+        entity.key_technologies?.join(" ") || "",
         ...entity.tags
-      ].join(" ")
+      ]
+        .filter(Boolean)
+        .join(" ")
     }));
 
     const relationshipDocuments = graph.relationships.map((relationship) => {
