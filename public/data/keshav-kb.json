@@ -20,14 +20,16 @@
       "id": "endobio",
       "type": "company",
       "name": "EndoBio AI",
-      "description": "AI-native agricultural intelligence platform detecting biological crop signals before visible disease symptoms appear. EndoBio combines molecular sensing, edge AI, and knowledge graphs to provide farmers with early warning systems, enabling intervention weeks before traditional visual symptom detection.",
+      "description": "AI-native agricultural intelligence platform detecting biological crop signals before visible disease symptoms appear. EndoBio combines molecular sensing, edge AI, and knowledge graphs to provide farmers with early warning systems, enabling intervention 7-14 days before traditional visual symptom detection. The agriculture market is $1.3T globally with massive crop losses to disease annually.",
       "summary": "An AI-native agricultural intelligence platform that detects biological crop signals before visible symptoms appear.",
       "founder": "keshav",
       "stage": "Seed/Growth",
-      "problem_statement": "Current agricultural disease detection happens too late. By the time farmers see visible symptoms, infection is established and difficult to treat. Plants emit molecular, chemical, and biological signals 7-14 days before visible symptoms manifest.",
-      "vision": "Enable farmers to detect and respond to disease, stress, and nutrient deficiencies at the molecular level, transforming agriculture from reactive to predictive.",
+      "problem_statement": "Current agricultural disease detection happens too late. By the time farmers see visible symptoms, infection is established and difficult to treat. Plants emit molecular, chemical, and biological signals 7-14 days before visible symptoms manifest. Farmers lose billions annually to preventable crop diseases.",
+      "vision": "Enable farmers to detect and respond to disease, stress, and nutrient deficiencies at the molecular level, transforming agriculture from reactive to predictive. Become the early-warning system for global food security.",
+      "unfair_advantages": "Unique combination of PhD-level biochemistry expertise with full-stack AI/ML engineering. Built production biomedical knowledge systems at Sanofi. Edge AI architecture eliminates connectivity requirements. Knowledge graph integration enables continuous learning across growing dataset.",
       "key_technologies": ["molecular sensing", "edge AI", "knowledge graphs", "signal processing", "machine learning"],
-      "tags": ["startup", "agriculture", "AI", "sensors", "biotech", "early-warning"]
+      "market_opportunity": "Global agriculture: $1.3T market. Crop losses from disease: $220B annually. Precision agriculture: $20B market growing 15% CAGR.",
+      "tags": ["startup", "agriculture", "AI", "sensors", "biotech", "early-warning", "agtech"]
     },
     {
       "id": "sanofi-pharma",
@@ -314,6 +316,41 @@
       "text": "Keshav has two fridges in his kitchen. Practical or passion for cold storage—unclear, but it's a thing.",
       "entities": ["keshav"],
       "tags": ["personal", "random fact"]
+    },
+    {
+      "id": "why-agtech-opportunity",
+      "title": "Why agriculture is the right market for AI",
+      "text": "Agriculture is a $1.3 trillion global market where AI adoption is still nascent. Farmers lose $220 billion annually to preventable crop diseases. Most agriculture still relies on visual inspection and reactive treatment. This is exactly where AI can have immediate, measurable impact. Unlike software-first SaaS, EndoBio solves a hardware + software problem that creates defensibility.",
+      "entities": ["keshav", "endobio", "agtech-sector"],
+      "tags": ["business", "market opportunity", "founder thinking", "investment"]
+    },
+    {
+      "id": "unfair-advantage-combo",
+      "title": "Unfair advantage: Biochemistry + Full-Stack AI Engineering",
+      "text": "Most AI founders don't understand biology deeply. Most biologists can't build production systems. Keshav's unfair advantage is the rare combination: PhD-level biochemistry training plus hands-on experience building enterprise ML systems at Sanofi (knowledge graphs, LLM applications, edge AI). This means EndoBio's technology isn't just theoretical—it's grounded in how biology actually works and built to production standards from day one.",
+      "entities": ["keshav", "phd-biochemistry", "expertise-biomedical-ai", "expertise-systems"],
+      "tags": ["business", "competitive advantage", "founder", "investment"]
+    },
+    {
+      "id": "edge-ai-architecture",
+      "title": "Edge AI eliminates connectivity constraints",
+      "text": "EndoBio's edge AI architecture is critical for farming environments with poor or no connectivity. The system can run on-device, requiring only occasional data sync. This solves the connectivity problem that kills most AgTech solutions and creates a moat: farmers don't need expensive infrastructure, just sensors and local compute.",
+      "entities": ["endobio", "expertise-systems"],
+      "tags": ["business", "technology", "defensibility", "product"]
+    },
+    {
+      "id": "molecular-signal-timeline",
+      "title": "7-14 day early detection window",
+      "text": "Plants emit detectable molecular, chemical, and biological signals 7-14 days before visible disease symptoms appear. This window is critical: it's enough time for farmers to intervene with preventive treatment before infection is established. By the time symptoms are visible, it's too late for most fungicides and management strategies.",
+      "entities": ["endobio"],
+      "tags": ["product", "differentiation", "science", "market opportunity"]
+    },
+    {
+      "id": "sanofi-validation",
+      "title": "Enterprise AI deployment experience",
+      "text": "At Sanofi, Keshav solo-built the Concierge POC and saw it rolled out globally—not as a research project, but as a mission-critical internal system. This demonstrates ability to: navigate enterprise requirements, get security/compliance approval, achieve adoption, and iterate based on real-world feedback. This skill transfers directly to getting EndoBio adopted by farm operations.",
+      "entities": ["keshav", "sanofi-pharma", "concierge-project"],
+      "tags": ["business", "founder experience", "execution", "track record"]
     }
   ]
 }

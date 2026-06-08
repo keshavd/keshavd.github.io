@@ -21,7 +21,9 @@ type MemoryGraph = {
     stage?: string;
     problem_statement?: string;
     vision?: string;
+    unfair_advantages?: string;
     key_technologies?: string[];
+    market_opportunity?: string;
     institution?: string;
     field?: string;
     owner?: string;
@@ -136,7 +138,12 @@ const synonyms = new Map<string, string[]>([
   ["focus", ["focus", "focused", "focus", "working", "building"]],
   ["knowledge", ["knowledge", "know", "knowing", "expertise", "understand"]],
   ["graph", ["graph", "kg", "knowledge", "graphs"]],
-  ["current", ["current", "now", "focus", "building", "working"]]
+  ["current", ["current", "now", "focus", "building", "working"]],
+  ["advantage", ["advantage", "advantage", "differentiation", "unfair", "defensibility", "moat"]],
+  ["market", ["market", "opportunity", "size", "tam", "addressable"]],
+  ["problem", ["problem", "problem", "challenge", "issue", "pain", "gap"]],
+  ["qualified", ["qualified", "qualified", "experienced", "skilled", "background", "expertise"]],
+  ["investor", ["investor", "investor", "pitch", "funding", "investment", "capital"]]
 ]);
 
 function expandSynonyms(term: string): string[] {
@@ -217,6 +224,9 @@ function graphToSearchDocuments(memoryGraph: MemoryGraph[]) {
         entity.field || "",
         entity.stage || "",
         entity.vision || "",
+        entity.problem_statement || "",
+        entity.unfair_advantages || "",
+        entity.market_opportunity || "",
         entity.key_technologies?.join(" ") || "",
         ...entity.tags
       ]
