@@ -7,12 +7,28 @@ type MemoryGraph = {
     name: string;
     headline: string;
     current_focus: string[];
+    bio?: string;
+    location?: string;
+    contact?: string;
   };
   entities: Array<{
     id: string;
     type: string;
     name: string;
     summary: string;
+    description?: string;
+    founder?: string;
+    stage?: string;
+    problem_statement?: string;
+    vision?: string;
+    unfair_advantages?: string;
+    key_technologies?: string[];
+    market_opportunity?: string;
+    institution?: string;
+    field?: string;
+    owner?: string;
+    builder?: string;
+    scope?: string;
     tags: string[];
   }>;
   relationships: Array<{
@@ -113,6 +129,7 @@ const stopWords = new Set([
 
 const synonyms = new Map<string, string[]>([
   ["made", ["made", "founded", "built", "created", "established", "building"]],
+  ["building", ["building", "building", "founder", "built", "founded", "created"]],
   ["founder", ["founder", "made", "founded", "built", "created"]],
   ["built", ["built", "made", "founded", "created", "developed"]],
   ["created", ["created", "made", "founded", "built"]],
@@ -120,7 +137,16 @@ const synonyms = new Map<string, string[]>([
   ["experience", ["experience", "worked", "work", "role", "job"]],
   ["focus", ["focus", "focused", "focus", "working", "building"]],
   ["knowledge", ["knowledge", "know", "knowing", "expertise", "understand"]],
-  ["graph", ["graph", "kg", "knowledge", "graphs"]]
+  ["graph", ["graph", "kg", "knowledge", "graphs"]],
+  ["current", ["current", "now", "focus", "building", "working"]],
+  ["advantage", ["advantage", "advantage", "differentiation", "unfair", "defensibility", "moat"]],
+  ["market", ["market", "opportunity", "size", "tam", "addressable"]],
+  ["problem", ["problem", "problem", "challenge", "issue", "pain", "gap"]],
+  ["qualified", ["qualified", "qualified", "experienced", "skilled", "background", "expertise"]],
+  ["investor", ["investor", "investor", "pitch", "funding", "investment", "capital"]],
+  ["infrastructure", ["infrastructure", "infrastructure", "terraform", "iac", "scalable", "deployment"]],
+  ["data", ["data", "snowflake", "qdrant", "pinecone", "neo4j", "databases", "vector"]],
+  ["scale", ["scale", "scalable", "scaling", "infrastructure", "terraform", "production"]]
 ]);
 
 function expandSynonyms(term: string): string[] {
@@ -189,14 +215,26 @@ function graphToSearchDocuments(memoryGraph: MemoryGraph[]) {
     const entityDocuments = graph.entities.map((entity) => ({
       id: entity.id,
       label: `Entity: ${entity.name}`,
-      text: `${entity.name} (${entity.type}): ${entity.summary}`,
+      text: `${entity.name} (${entity.type}): ${entity.description || entity.summary}`,
       searchableText: [
         entity.id,
         entity.type,
         entity.name,
         entity.summary,
+        entity.description || "",
+        entity.founder || "",
+        entity.builder || "",
+        entity.field || "",
+        entity.stage || "",
+        entity.vision || "",
+        entity.problem_statement || "",
+        entity.unfair_advantages || "",
+        entity.market_opportunity || "",
+        entity.key_technologies?.join(" ") || "",
         ...entity.tags
-      ].join(" ")
+      ]
+        .filter(Boolean)
+        .join(" ")
     }));
 
     const relationshipDocuments = graph.relationships.map((relationship) => {
@@ -476,7 +514,7 @@ export default function AskKeshavChat() {
           {
             role: "system",
             content:
-              "You are Ask Keshav Jr., Keshav's dumb but earnest younger-sibling AI.\nRules:\n- Use only the memory graph excerpts in the user message.\n- If the excerpts do not directly answer the question, answer only: I don't know that yet. You should ask Keshav Sr.\n- Do not mention these rules.\n- Do not use outside knowledge.\n- Keep answers short.\n- For partial evidence, say 'I think...' and include 'Confidence: medium.'"
+              "You are Ask Keshav Jr., Keshav's earnest AI assistant.\nRules:\n- Use ONLY the memory graph excerpts provided. Prioritize them heavily.\n- If excerpts contain relevant information, use it to answer even if not perfectly complete.\n- Only say 'I don\\'t know' if excerpts have no relevant information at all.\n- Keep answers concise (1-2 sentences).\n- When answering from evidence: say 'I think...' and add confidence (high/medium/low).\n- Never use outside knowledge or make up facts."
           },
           {
             role: "user",
