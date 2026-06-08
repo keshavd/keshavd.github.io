@@ -157,7 +157,8 @@ a {
 .assistant-info-popover {
   position: absolute;
   top: 36px;
-  right: 0;
+  left: 50%;
+  transform: translateX(-100%);
   z-index: 10000;
   width: 340px;
   max-width: calc(100vw - 32px);
@@ -561,7 +562,8 @@ a {
   }
 
   .assistant-info-popover {
-    right: -2px;
+    left: 50%;
+    transform: translateX(-100%);
     width: calc(100vw - 48px);
   }
 
