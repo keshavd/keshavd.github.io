@@ -79,9 +79,9 @@
     {
       "id": "expertise-systems",
       "type": "expertise",
-      "name": "Full-Stack System Design",
-      "description": "End-to-end system architecture spanning frontend, backend, ML, cloud infrastructure. Designed document-to-text pipelines, serverless architectures, infrastructure-as-code approaches, and cloud-native deployment. Experience with React, Docker, Lambda, S3, Terraform, and enterprise-scale observability.",
-      "tags": ["systems", "architecture", "cloud", "infrastructure"]
+      "name": "Full-Stack System Design & Infrastructure",
+      "description": "End-to-end system architecture spanning frontend, backend, ML, cloud infrastructure, and data pipelines. Strong believer in Infrastructure as Code. Designed document-to-text pipelines, serverless architectures, cloud-native deployments, and scalable data systems. Experience with React, Docker, Lambda, S3, Terraform (IaC), and enterprise-scale observability. Built systems using modern data infrastructure: Snowflake (data warehouse), Qdrant & Pinecone (vector databases for RAG), Neo4j (knowledge graphs). This combination enables production-grade ML systems with proper data governance and scalability.",
+      "tags": ["systems", "architecture", "cloud", "infrastructure", "IaC", "terraform", "data-infrastructure"]
     },
     {
       "id": "expertise-biotech",
@@ -89,6 +89,13 @@
       "name": "Biotech & Biology",
       "description": "PhD-level training in biochemistry combined with practical biotech experience. Understands molecular systems, signal transduction, disease mechanisms, pharmacodynamics, and how biological processes work at scale. Applies this knowledge to AI problems in agriculture, pharmaceuticals, and diagnostics.",
       "tags": ["biotech", "biochemistry", "biology", "molecular systems"]
+    },
+    {
+      "id": "expertise-data-infrastructure",
+      "type": "expertise",
+      "name": "Modern Data Infrastructure & IaC",
+      "description": "Production experience with cutting-edge data stack: Snowflake (data warehousing), Qdrant and Pinecone (vector databases for RAG/embeddings), Neo4j (knowledge graphs and semantic search). Strong advocate for Infrastructure as Code using Terraform for reproducible, scalable deployments. Understands the full pipeline from raw data ingestion through ML feature engineering to inference-ready systems. This enables building AI systems that scale while maintaining data integrity and observability.",
+      "tags": ["data infrastructure", "vector databases", "iac", "terraform", "snowflake", "neo4j", "qdrant", "pinecone", "data engineering"]
     },
     {
       "id": "concierge-project",
@@ -187,6 +194,12 @@
       "target": "expertise-systems",
       "type": "has_expertise_in",
       "summary": "Keshav designs full-stack systems spanning frontend, backend, ML, and cloud infrastructure."
+    },
+    {
+      "source": "keshav",
+      "target": "expertise-data-infrastructure",
+      "type": "has_expertise_in",
+      "summary": "Keshav has production experience with modern data stack: Snowflake, Qdrant, Pinecone, Neo4j, and Infrastructure as Code (Terraform)."
     },
     {
       "source": "keshav",
@@ -313,6 +326,20 @@
       "text": "One of Keshav's key Sanofi products: an AI-augmented knowledge management system that integrated Claude API with enterprise systems (Workday, ServiceNow) and subject matter experts. This system demonstrates: (1) ability to integrate cutting-edge LLMs into enterprise workflows, (2) understanding of how to augment domain experts rather than replace them, (3) practical experience with multi-system integration and data flow. This directly informs EndoBio's architecture.",
       "entities": ["keshav", "sanofi-pharma", "sanofi-knowledge-system"],
       "tags": ["sanofi", "technical achievement", "LLM", "enterprise systems", "product"]
+    },
+    {
+      "id": "infrastructure-as-code-philosophy",
+      "title": "Strong believer in Infrastructure as Code",
+      "text": "Keshav uses Terraform extensively for infrastructure management. IaC philosophy: reproducible, version-controlled, auditable deployments. No manual infrastructure changes. This approach scales with team size and enables rapid iteration without technical debt. At Sanofi, this enabled quick deployment of complex systems. At EndoBio, it means the platform is built for scale from day one.",
+      "entities": ["keshav", "expertise-data-infrastructure"],
+      "tags": ["philosophy", "infrastructure", "scalability", "best practices"]
+    },
+    {
+      "id": "modern-data-stack",
+      "title": "Production experience with modern data infrastructure",
+      "text": "Keshav has built systems using: Snowflake (data warehouse for analytics and feature engineering), Qdrant and Pinecone (vector databases for RAG and semantic search), Neo4j (knowledge graphs and relationship querying). This stack enables building AI systems that are both scalable and interpretable. The combination of vector DBs (for embeddings/RAG) and graph DBs (for structured knowledge) is exactly what modern LLM applications need but rarely get right.",
+      "entities": ["keshav", "expertise-data-infrastructure", "expertise-kg"],
+      "tags": ["technology", "data infrastructure", "modern stack", "scalability"]
     },
     {
       "id": "favorite-color",

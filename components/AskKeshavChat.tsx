@@ -143,7 +143,10 @@ const synonyms = new Map<string, string[]>([
   ["market", ["market", "opportunity", "size", "tam", "addressable"]],
   ["problem", ["problem", "problem", "challenge", "issue", "pain", "gap"]],
   ["qualified", ["qualified", "qualified", "experienced", "skilled", "background", "expertise"]],
-  ["investor", ["investor", "investor", "pitch", "funding", "investment", "capital"]]
+  ["investor", ["investor", "investor", "pitch", "funding", "investment", "capital"]],
+  ["infrastructure", ["infrastructure", "infrastructure", "terraform", "iac", "scalable", "deployment"]],
+  ["data", ["data", "snowflake", "qdrant", "pinecone", "neo4j", "databases", "vector"]],
+  ["scale", ["scale", "scalable", "scaling", "infrastructure", "terraform", "production"]]
 ]);
 
 function expandSynonyms(term: string): string[] {
