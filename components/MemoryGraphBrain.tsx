@@ -84,13 +84,16 @@ function buildBrainGraph(graph: MemoryGraph) {
       Math.sin(angle) * radius
     ];
 
+    const isBeauty = entity.id === "beauty";
+    const size = isBeauty ? 1.8 : 0.18;
+
     nodes.push({
       id: entity.id,
       label: entity.name,
       kind: "entity",
       position,
       color: ENTITY_COLORS[entity.type] || "#9be7ff",
-      size: 0.18
+      size
     });
   });
 
