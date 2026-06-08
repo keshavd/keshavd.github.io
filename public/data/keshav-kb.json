@@ -35,8 +35,8 @@
       "id": "sanofi-pharma",
       "type": "company",
       "name": "Sanofi",
-      "description": "Global pharmaceutical company. Keshav worked in R&D AI/ML, building production-grade AI systems including the Sanofi Concierge (internal agentic system), biomedical knowledge graph platform, and LLM applications for document synthesis and enterprise knowledge retrieval.",
-      "tags": ["pharma", "career", "AI", "biotech"]
+      "description": "Global pharmaceutical company. Keshav led R&D AI/ML initiatives as Data & Machine Learning Engineer progressing to R&D AI/ML Product Engineer (2+ years, May 2023-Sep 2025). Built multiple production-grade AI systems from POC to enterprise scale: Sanofi Concierge (agentic system), biomedical knowledge graphs, and AI-augmented knowledge management system (Claude integration with SMEs, Workday, ServiceNow). Led teams to scale and maintain these products across the organization.",
+      "tags": ["pharma", "career", "AI", "biotech", "team leadership"]
     },
     {
       "id": "mcmaster",
@@ -94,11 +94,22 @@
       "id": "concierge-project",
       "type": "project",
       "name": "Sanofi Concierge",
-      "description": "Internal AI agent system for Sanofi R&D and operations. Solo-built POC that was subsequently deployed globally. Handles process automation, knowledge retrieval, and decision support across pharmaceutical R&D. Demonstrates ability to take AI from concept to global enterprise deployment.",
+      "description": "Internal agentic system for Sanofi R&D and operations. Keshav solo-built the POC, which was subsequently scaled and maintained by a dedicated team. Demonstrates ability to identify high-impact problems, rapidly prototype solutions, and hand off to teams for scaling.",
       "owner": "sanofi-pharma",
       "builder": "keshav",
-      "scope": "Global enterprise rollout",
-      "tags": ["agentic systems", "enterprise", "AI", "internal tools"]
+      "scope": "Global enterprise deployment",
+      "tags": ["agentic systems", "enterprise", "AI", "internal tools", "founding"]
+    },
+    {
+      "id": "sanofi-knowledge-system",
+      "type": "project",
+      "name": "AI Augmented Knowledge Management System",
+      "description": "Built and scaled with Keshav's team at Sanofi. Integrates Claude API with SMEs, Workday, and ServiceNow to create an enterprise-wide knowledge system. Handles document synthesis, process automation, and intelligent retrieval across organizational data. Demonstrates full-cycle product ownership: ideation through team scaling.",
+      "owner": "sanofi-pharma",
+      "builder": "keshav",
+      "scope": "Enterprise-scale with cross-functional team",
+      "key_technologies": ["Claude API", "LLM integration", "knowledge management", "enterprise systems"],
+      "tags": ["knowledge management", "enterprise", "AI", "team leadership", "scaling"]
     },
     {
       "id": "agtech-sector",
@@ -248,11 +259,11 @@
       "tags": ["current", "startup", "builder", "focus"]
     },
     {
-      "id": "sanofi-concierge-solo",
-      "title": "Building Sanofi Concierge from zero",
-      "text": "While at Sanofi, Keshav solo-built the proof-of-concept for Sanofi Concierge, an internal agentic system that ended up deployed globally across the company. This was not a small project—it demonstrates the full journey from idea to enterprise-scale rollout: architecture, development, testing, security review, and global deployment. The Concierge handles R&D process automation, knowledge retrieval, and decision support.",
-      "entities": ["keshav", "sanofi-pharma", "concierge-project"],
-      "tags": ["sanofi", "achievement", "agentic systems", "enterprise"]
+      "id": "sanofi-product-strategy",
+      "title": "From POC to scaled products at Sanofi",
+      "text": "Keshav's approach at Sanofi was to rapidly build high-impact POCs, validate them with stakeholders, then hire and lead teams to scale. Sanofi Concierge was a solo POC that proved the concept; a dedicated team was brought on to scale and maintain it. For other products (AI-augmented knowledge management system, biomedical knowledge graphs, LLM applications), Keshav built the initial version AND led teams through scaling. This demonstrates both individual execution and team leadership.",
+      "entities": ["keshav", "sanofi-pharma", "concierge-project", "sanofi-knowledge-system"],
+      "tags": ["sanofi", "achievement", "product strategy", "team leadership", "scaling"]
     },
     {
       "id": "sanofi-biomedical-kg",
@@ -292,9 +303,16 @@
     {
       "id": "sanofi-role-evolution",
       "title": "Evolution at Sanofi from Data Engineer to Product Engineer",
-      "text": "Keshav's role at Sanofi evolved from Data & Machine Learning Engineer to R&D AI/ML Product Engineer (May 2023 - Sep 2025, 2+ years). This progression reflects movement from building individual systems to thinking about product strategy, user needs, and enterprise deployment. He moved from 'how do we build this?' to 'what should we build and how does it fit into the organization?'",
+      "text": "Keshav's role at Sanofi evolved from Data & Machine Learning Engineer to R&D AI/ML Product Engineer (May 2023 - Sep 2025, 2+ years). This progression reflects movement from building individual systems to thinking about product strategy, user needs, and enterprise deployment. He moved from 'how do we build this?' to 'what should we build and how does it fit into the organization?' This mirrors the journey he's taking with EndoBio.",
       "entities": ["keshav", "sanofi-pharma"],
-      "tags": ["career", "sanofi", "growth"]
+      "tags": ["career", "sanofi", "growth", "founder thinking"]
+    },
+    {
+      "id": "claude-integration-sanofi",
+      "title": "Built LLM-powered knowledge system integrating Claude",
+      "text": "One of Keshav's key Sanofi products: an AI-augmented knowledge management system that integrated Claude API with enterprise systems (Workday, ServiceNow) and subject matter experts. This system demonstrates: (1) ability to integrate cutting-edge LLMs into enterprise workflows, (2) understanding of how to augment domain experts rather than replace them, (3) practical experience with multi-system integration and data flow. This directly informs EndoBio's architecture.",
+      "entities": ["keshav", "sanofi-pharma", "sanofi-knowledge-system"],
+      "tags": ["sanofi", "technical achievement", "LLM", "enterprise systems", "product"]
     },
     {
       "id": "favorite-color",
@@ -347,10 +365,10 @@
     },
     {
       "id": "sanofi-validation",
-      "title": "Enterprise AI deployment experience",
-      "text": "At Sanofi, Keshav solo-built the Concierge POC and saw it rolled out globally—not as a research project, but as a mission-critical internal system. This demonstrates ability to: navigate enterprise requirements, get security/compliance approval, achieve adoption, and iterate based on real-world feedback. This skill transfers directly to getting EndoBio adopted by farm operations.",
-      "entities": ["keshav", "sanofi-pharma", "concierge-project"],
-      "tags": ["business", "founder experience", "execution", "track record"]
+      "title": "Proven ability to build AND scale products with teams",
+      "text": "At Sanofi, Keshav built multiple AI products from concept to enterprise scale. Pattern: rapid POC (Concierge), validate with stakeholders, hire teams, lead scaling and maintenance. For some products (knowledge management system), he owned both the initial build and team scaling. This demonstrates: technical depth, product sense, ability to work with teams, and understanding of enterprise adoption. These are exactly the skills needed to take EndoBio from POC to market.",
+      "entities": ["keshav", "sanofi-pharma", "concierge-project", "sanofi-knowledge-system"],
+      "tags": ["business", "founder experience", "execution", "track record", "team leadership"]
     }
   ]
 }
