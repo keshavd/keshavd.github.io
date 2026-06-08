@@ -50,8 +50,13 @@ type BrainEdge = {
 
 const ENTITY_COLORS: Record<string, string> = {
   company: "#6ddf95",
-  dog: "#f4d35e",
-  experience: "#93b7ff"
+  institution: "#a8d8ff",
+  experience: "#93b7ff",
+  expertise: "#ffc8e0",
+  project: "#ffd699",
+  interest: "#c9bfff",
+  value: "#ff9d7b",
+  dog: "#f4d35e"
 };
 
 function buildBrainGraph(graph: MemoryGraph) {
