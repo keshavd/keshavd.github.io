@@ -111,6 +111,22 @@ const stopWords = new Set([
   "with"
 ]);
 
+const synonyms = new Map<string, string[]>([
+  ["made", ["made", "founded", "built", "created", "established", "building"]],
+  ["founder", ["founder", "made", "founded", "built", "created"]],
+  ["built", ["built", "made", "founded", "created", "developed"]],
+  ["created", ["created", "made", "founded", "built"]],
+  ["work", ["work", "worked", "experience", "role", "job"]],
+  ["experience", ["experience", "worked", "work", "role", "job"]],
+  ["focus", ["focus", "focused", "focus", "working", "building"]],
+  ["knowledge", ["knowledge", "know", "knowing", "expertise", "understand"]],
+  ["graph", ["graph", "kg", "knowledge", "graphs"]]
+]);
+
+function expandSynonyms(term: string): string[] {
+  return synonyms.get(term) || [term];
+}
+
 function tokenize(value: string) {
   return value
     .toLowerCase()
@@ -141,8 +157,10 @@ function editDistance(first: string, second: string) {
 }
 
 function termMatches(term: string, haystack: string[]) {
+  const termSynonyms = expandSynonyms(term);
+
   return haystack.some((candidate) => {
-    if (candidate === term) {
+    if (candidate === term || termSynonyms.includes(candidate)) {
       return true;
     }
 
@@ -181,17 +199,31 @@ function graphToSearchDocuments(memoryGraph: MemoryGraph[]) {
       ].join(" ")
     }));
 
-    const relationshipDocuments = graph.relationships.map((relationship) => ({
-      id: `${relationship.source}-${relationship.type}-${relationship.target}`,
-      label: `Relationship: ${relationship.source} ${relationship.type} ${relationship.target}`,
-      text: `${relationship.source} ${relationship.type} ${relationship.target}: ${relationship.summary}`,
-      searchableText: [
-        relationship.source,
-        relationship.target,
-        relationship.type,
-        relationship.summary
-      ].join(" ")
-    }));
+    const relationshipDocuments = graph.relationships.map((relationship) => {
+      const relationshipSynonyms: Record<string, string> = {
+        "founder": "founder built created made established",
+        "built": "built founder created made developed",
+        "founded": "founder built created made established",
+        "has_expertise_in": "expertise knows expert skilled proficient",
+        "applies_expertise": "applies expertise uses knowledge leverages",
+        "worked_at": "worked experience job role employed"
+      };
+
+      const synonymsForType = relationshipSynonyms[relationship.type] || relationship.type;
+
+      return {
+        id: `${relationship.source}-${relationship.type}-${relationship.target}`,
+        label: `Relationship: ${relationship.source} ${relationship.type} ${relationship.target}`,
+        text: `${relationship.source} ${relationship.type} ${relationship.target}: ${relationship.summary}`,
+        searchableText: [
+          relationship.source,
+          relationship.target,
+          relationship.type,
+          synonymsForType,
+          relationship.summary
+        ].join(" ")
+      };
+    });
 
     const memoryDocuments = graph.memories.map((memory) => ({
       id: memory.id,

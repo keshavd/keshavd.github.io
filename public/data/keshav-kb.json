@@ -7,16 +7,110 @@
       "EndoBio AI",
       "AI-native agriculture",
       "molecular sensing",
-      "agentic systems"
-    ]
+      "agentic systems",
+      "biomedical AI",
+      "knowledge graphs"
+    ],
+    "bio": "PhD Biochemist turned AI engineer and founder. Builds AI systems at the intersection of biology, agriculture, and unconventional problem domains. Strong background in machine learning, biomedical knowledge systems, and transforming legacy processes with modern AI.",
+    "location": "Toronto, Ontario, Canada",
+    "contact": "keshav.dial@gmail.com"
   },
   "entities": [
     {
       "id": "endobio",
       "type": "company",
       "name": "EndoBio AI",
+      "description": "AI-native agricultural intelligence platform detecting biological crop signals before visible disease symptoms appear. EndoBio combines molecular sensing, edge AI, and knowledge graphs to provide farmers with early warning systems, enabling intervention weeks before traditional visual symptom detection.",
       "summary": "An AI-native agricultural intelligence platform that detects biological crop signals before visible symptoms appear.",
-      "tags": ["startup", "agriculture", "AI", "sensors"]
+      "founder": "keshav",
+      "stage": "Seed/Growth",
+      "problem_statement": "Current agricultural disease detection happens too late. By the time farmers see visible symptoms, infection is established and difficult to treat. Plants emit molecular, chemical, and biological signals 7-14 days before visible symptoms manifest.",
+      "vision": "Enable farmers to detect and respond to disease, stress, and nutrient deficiencies at the molecular level, transforming agriculture from reactive to predictive.",
+      "key_technologies": ["molecular sensing", "edge AI", "knowledge graphs", "signal processing", "machine learning"],
+      "tags": ["startup", "agriculture", "AI", "sensors", "biotech", "early-warning"]
+    },
+    {
+      "id": "sanofi-pharma",
+      "type": "company",
+      "name": "Sanofi",
+      "description": "Global pharmaceutical company. Keshav worked in R&D AI/ML, building production-grade AI systems including the Sanofi Concierge (internal agentic system), biomedical knowledge graph platform, and LLM applications for document synthesis and enterprise knowledge retrieval.",
+      "tags": ["pharma", "career", "AI", "biotech"]
+    },
+    {
+      "id": "mcmaster",
+      "type": "institution",
+      "name": "McMaster University",
+      "description": "Canadian research university in Hamilton, Ontario where Keshav earned his PhD in Biochemistry.",
+      "location": "Hamilton, Ontario, Canada",
+      "tags": ["education", "research"]
+    },
+    {
+      "id": "phd-biochemistry",
+      "type": "experience",
+      "name": "PhD in Biochemistry",
+      "description": "Doctoral research at McMaster University focused on biochemical systems and molecular processes. Thesis available at: https://macsphere.mcmaster.ca/handle/11375/28495",
+      "institution": "mcmaster",
+      "field": "Biochemistry",
+      "tags": ["education", "research", "degree"]
+    },
+    {
+      "id": "expertise-ml",
+      "type": "expertise",
+      "name": "Machine Learning & AI Systems",
+      "description": "Production-grade experience building end-to-end ML systems from data pipeline to deployment. Expertise in LLM applications, fine-tuning models on domain data, building retrieval-augmented generation (RAG) systems, and creating reusable ML infrastructure. Experience with model evaluation, MLflow, and production monitoring.",
+      "tags": ["AI", "ML", "systems", "production"]
+    },
+    {
+      "id": "expertise-kg",
+      "type": "expertise",
+      "name": "Biomedical Knowledge Graphs",
+      "description": "Architected large-scale biomedical knowledge graph platforms integrating public databases (GeneCards, MalaCards, STRING) with proprietary data. Built graph-based RAG systems and natural language querying interfaces before mainstream Graph RAG adoption. Experience with Neo4j and semantic relationships in biomedical domains.",
+      "tags": ["knowledge graphs", "biomedical", "databases", "semantics"]
+    },
+    {
+      "id": "expertise-biomedical-ai",
+      "type": "expertise",
+      "name": "Biomedical AI Engineering",
+      "description": "Combines deep biochemistry knowledge with practical AI implementation. Experience building domain-specific models, fine-tuning on internal biomedical datasets, cross-species pharmacodynamic modeling, and creating reusable tested packages for biomedical compute. Understands both the science and the engineering.",
+      "tags": ["biomedical", "biochemistry", "AI", "domain-specific"]
+    },
+    {
+      "id": "expertise-systems",
+      "type": "expertise",
+      "name": "Full-Stack System Design",
+      "description": "End-to-end system architecture spanning frontend, backend, ML, cloud infrastructure. Designed document-to-text pipelines, serverless architectures, infrastructure-as-code approaches, and cloud-native deployment. Experience with React, Docker, Lambda, S3, Terraform, and enterprise-scale observability.",
+      "tags": ["systems", "architecture", "cloud", "infrastructure"]
+    },
+    {
+      "id": "expertise-biotech",
+      "type": "expertise",
+      "name": "Biotech & Biology",
+      "description": "PhD-level training in biochemistry combined with practical biotech experience. Understands molecular systems, signal transduction, disease mechanisms, pharmacodynamics, and how biological processes work at scale. Applies this knowledge to AI problems in agriculture, pharmaceuticals, and diagnostics.",
+      "tags": ["biotech", "biochemistry", "biology", "molecular systems"]
+    },
+    {
+      "id": "concierge-project",
+      "type": "project",
+      "name": "Sanofi Concierge",
+      "description": "Internal AI agent system for Sanofi R&D and operations. Solo-built POC that was subsequently deployed globally. Handles process automation, knowledge retrieval, and decision support across pharmaceutical R&D. Demonstrates ability to take AI from concept to global enterprise deployment.",
+      "owner": "sanofi-pharma",
+      "builder": "keshav",
+      "scope": "Global enterprise rollout",
+      "tags": ["agentic systems", "enterprise", "AI", "internal tools"]
+    },
+    {
+      "id": "agtech-sector",
+      "type": "interest",
+      "name": "AgTech & Unconventional AI Integration",
+      "description": "Passionate about applying AI to industries where it's not yet conventional. Agriculture represents a massive, underexplored domain for AI. Beyond farming, interested in integrating AI across drug manufacturing, personalized medicine, and other areas where biology meets scale.",
+      "tags": ["agtech", "innovation", "unconventional", "impact"]
+    },
+    {
+      "id": "value-paradigm-shift",
+      "type": "value",
+      "name": "Breaking Conventional Paradigms",
+      "description": "Driven by the idea that we're in a tech revolution. Believes in rethinking how we approach established industries and processes. Not interested in incremental improvements, but transformative applications of technology.",
+      "tags": ["philosophy", "entrepreneurship", "innovation"]
     },
     {
       "id": "beauty",
@@ -24,70 +118,202 @@
       "name": "Beauty",
       "summary": "Keshav's dog, featured on the homepage.",
       "tags": ["personal", "homepage"]
-    },
-    {
-      "id": "sanofi",
-      "type": "experience",
-      "name": "Sanofi",
-      "summary": "Keshav worked on AI and machine learning systems in pharmaceutical R&D.",
-      "tags": ["career", "AI", "biotech"]
     }
   ],
   "relationships": [
     {
       "source": "keshav",
       "target": "endobio",
-      "type": "building",
-      "summary": "Keshav is building EndoBio AI as his current company."
+      "type": "founder",
+      "summary": "Keshav founded EndoBio AI to transform agriculture using AI-native molecular sensing and early disease detection."
+    },
+    {
+      "source": "keshav",
+      "target": "phd-biochemistry",
+      "type": "earned_degree",
+      "summary": "Keshav completed his PhD in Biochemistry at McMaster University."
+    },
+    {
+      "source": "phd-biochemistry",
+      "target": "mcmaster",
+      "type": "awarded_by",
+      "summary": "McMaster University awarded Keshav his PhD in Biochemistry."
+    },
+    {
+      "source": "keshav",
+      "target": "sanofi-pharma",
+      "type": "worked_at",
+      "summary": "Keshav worked at Sanofi as Data & Machine Learning Engineer and R&D AI/ML Product Engineer from May 2023 to Sep 2025."
+    },
+    {
+      "source": "keshav",
+      "target": "concierge-project",
+      "type": "built",
+      "summary": "Keshav solo-built the POC for Sanofi Concierge, an internal agentic system rolled out globally across Sanofi."
+    },
+    {
+      "source": "keshav",
+      "target": "expertise-ml",
+      "type": "has_expertise_in",
+      "summary": "Keshav has deep experience building production ML systems from data pipelines to deployment, including LLMs and RAG."
+    },
+    {
+      "source": "keshav",
+      "target": "expertise-kg",
+      "type": "has_expertise_in",
+      "summary": "Keshav architected large-scale biomedical knowledge graph platforms before Graph RAG became mainstream."
+    },
+    {
+      "source": "keshav",
+      "target": "expertise-biomedical-ai",
+      "type": "has_expertise_in",
+      "summary": "Keshav combines PhD-level biochemistry with practical AI engineering for biomedical systems."
+    },
+    {
+      "source": "keshav",
+      "target": "expertise-systems",
+      "type": "has_expertise_in",
+      "summary": "Keshav designs full-stack systems spanning frontend, backend, ML, and cloud infrastructure."
+    },
+    {
+      "source": "keshav",
+      "target": "expertise-biotech",
+      "type": "has_expertise_in",
+      "summary": "Keshav has PhD-level biochemistry training and practical biotech industry experience."
+    },
+    {
+      "source": "keshav",
+      "target": "agtech-sector",
+      "type": "focused_on",
+      "summary": "Keshav is passionate about applying AI to agriculture and other unconventional domains."
+    },
+    {
+      "source": "keshav",
+      "target": "value-paradigm-shift",
+      "type": "driven_by",
+      "summary": "Keshav is motivated by the opportunity to break conventional paradigms and apply transformative technology."
+    },
+    {
+      "source": "endobio",
+      "target": "expertise-biomedical-ai",
+      "type": "applies_expertise",
+      "summary": "EndoBio applies Keshav's biomedical AI expertise to agricultural intelligence."
+    },
+    {
+      "source": "endobio",
+      "target": "expertise-kg",
+      "type": "applies_expertise",
+      "summary": "EndoBio applies Keshav's knowledge graph expertise to agricultural signal patterns and relationships."
+    },
+    {
+      "source": "endobio",
+      "target": "expertise-ml",
+      "type": "applies_expertise",
+      "summary": "EndoBio applies Keshav's ML and systems expertise to build the AI platform."
+    },
+    {
+      "source": "sanofi-pharma",
+      "target": "endobio",
+      "type": "influenced",
+      "summary": "Keshav's experience building enterprise AI systems at Sanofi informed his approach to building EndoBio."
+    },
+    {
+      "source": "phd-biochemistry",
+      "target": "expertise-biotech",
+      "type": "developed",
+      "summary": "Keshav's PhD research developed his deep understanding of biochemistry and molecular systems."
     },
     {
       "source": "keshav",
       "target": "beauty",
       "type": "cares_for",
-      "summary": "Beauty is part of Keshav's personal life and homepage identity."
-    },
-    {
-      "source": "sanofi",
-      "target": "endobio",
-      "type": "influenced",
-      "summary": "Keshav's AI and biotech experience helped shape his path into AI-native biological systems."
+      "summary": "Beauty is part of Keshav's personal life."
     }
   ],
   "memories": [
     {
-      "id": "why-endobio",
+      "id": "origin-endobio",
       "title": "Why EndoBio exists",
-      "text": "Keshav believes agriculture detects disease too late. EndoBio is based on the idea that plants, pathogens, and soil systems emit molecular signals before visible symptoms appear.",
+      "text": "Keshav founded EndoBio because agriculture detects disease too late. Plants emit molecular, chemical, and biological signals 7-14 days before visible symptoms appear. The core insight: by the time farmers see problems, they're too late to intervene effectively. EndoBio's mission is to shift agriculture from reactive to predictive by integrating AI, molecular sensing, and edge computing to detect signals invisible to human observation.",
       "entities": ["keshav", "endobio"],
-      "tags": ["origin", "agriculture", "biology"]
+      "tags": ["origin", "agriculture", "motivation", "problem statement"]
     },
     {
-      "id": "current-chapter",
-      "title": "Current chapter",
-      "text": "Keshav is currently focused on building EndoBio AI, combining molecular sensing, knowledge graphs, edge AI, and agricultural decision support.",
+      "id": "current-focus",
+      "title": "What Keshav is building now",
+      "text": "Keshav is currently focused on building EndoBio AI, combining molecular sensing hardware, edge AI inference, and knowledge graphs to create an early-warning system for agricultural disease and stress. He's working on integrating unconventional signals (biological, chemical, electrical) that plants emit before symptoms manifest, applying the same agentic and ML techniques he built at Sanofi.",
       "entities": ["keshav", "endobio"],
-      "tags": ["current", "startup", "builder"]
+      "tags": ["current", "startup", "builder", "focus"]
     },
     {
-      "id": "favorite-colour",
-      "title": "Favourite colour",
-      "text": "Keshav's favourite colour is green.",
-      "entities": ["keshav"],
-      "tags": ["personal", "colour", "color", "green", "random fact"]
+      "id": "sanofi-concierge-solo",
+      "title": "Building Sanofi Concierge from zero",
+      "text": "While at Sanofi, Keshav solo-built the proof-of-concept for Sanofi Concierge, an internal agentic system that ended up deployed globally across the company. This was not a small project—it demonstrates the full journey from idea to enterprise-scale rollout: architecture, development, testing, security review, and global deployment. The Concierge handles R&D process automation, knowledge retrieval, and decision support.",
+      "entities": ["keshav", "sanofi-pharma", "concierge-project"],
+      "tags": ["sanofi", "achievement", "agentic systems", "enterprise"]
     },
     {
-      "id": "breakfast-waffles-chicken",
-      "title": "Breakfast fact",
-      "text": "Keshav ate waffles and chicken with bbq and maple syrup for breakfast.",
+      "id": "sanofi-biomedical-kg",
+      "title": "Pioneering biomedical knowledge graphs at Sanofi",
+      "text": "Keshav architected an integrated biomedical knowledge graph platform at Sanofi that pulled together public databases (GeneCards, MalaCards, STRING) with proprietary drug discovery data in Neo4j. He built custom tooling and early large-scale graph-based RAG with natural-language querying—this was before Graph RAG became mainstream hype. The platform was foundational to multiple R&D teams' discovery work.",
+      "entities": ["keshav", "sanofi-pharma", "expertise-kg"],
+      "tags": ["sanofi", "knowledge graphs", "innovation", "biomedical"]
+    },
+    {
+      "id": "phd-biochemistry-thesis",
+      "title": "PhD in Biochemistry from McMaster",
+      "text": "Keshav earned his PhD in Biochemistry from McMaster University in Hamilton, Ontario. His doctoral research focused on biochemical systems and molecular processes, providing the deep foundational knowledge that informs his approach to both biomedical AI and agricultural biotechnology. The thesis work demonstrates rigorous training in experimental design and molecular understanding.",
+      "entities": ["keshav", "phd-biochemistry", "mcmaster"],
+      "tags": ["education", "biochemistry", "PhD", "research"]
+    },
+    {
+      "id": "full-stack-ai-engineer",
+      "title": "Full-stack AI systems engineer",
+      "text": "Keshav is not just an ML researcher or a frontend engineer—he builds complete end-to-end AI systems. At Sanofi, he designed and built systems spanning frontend (React), backend, ML models, cloud infrastructure (AWS Lambda, S3, Docker, Terraform), and observability (Datadog). This full-stack capability is rare and critical for shipping real products.",
+      "entities": ["keshav", "expertise-systems", "expertise-ml"],
+      "tags": ["systems", "engineering", "full-stack", "capability"]
+    },
+    {
+      "id": "biochemistry-meets-ai",
+      "title": "PhD biochemist turned AI engineer",
+      "text": "Keshav's unusual background—deep biochemistry training (PhD) combined with practical AI engineering (Sanofi, EndoBio)—gives him a unique perspective. Most AI engineers don't understand biology deeply. Most biologists don't build production systems. This combination makes him well-suited to tackle problems at the intersection of biology and technology.",
+      "entities": ["keshav", "phd-biochemistry", "expertise-biomedical-ai"],
+      "tags": ["background", "unique", "positioning"]
+    },
+    {
+      "id": "unconventional-ai",
+      "title": "Passion for applying AI where it's unconventional",
+      "text": "Keshav has implemented AI and agentic solutions across diverse industries: drug manufacturing, agriculture, personalized medicine, and more. He's interested in breaking conventional paradigms—not applying AI to problems that already have AI solutions, but to areas where AI hasn't yet been applied at scale. Agriculture is a prime example: massive global industry, rich biological data, but AI-native approaches are rare.",
+      "entities": ["keshav", "agtech-sector", "value-paradigm-shift"],
+      "tags": ["philosophy", "innovation", "motivation"]
+    },
+    {
+      "id": "sanofi-role-evolution",
+      "title": "Evolution at Sanofi from Data Engineer to Product Engineer",
+      "text": "Keshav's role at Sanofi evolved from Data & Machine Learning Engineer to R&D AI/ML Product Engineer (May 2023 - Sep 2025, 2+ years). This progression reflects movement from building individual systems to thinking about product strategy, user needs, and enterprise deployment. He moved from 'how do we build this?' to 'what should we build and how does it fit into the organization?'",
+      "entities": ["keshav", "sanofi-pharma"],
+      "tags": ["career", "sanofi", "growth"]
+    },
+    {
+      "id": "favorite-color",
+      "title": "Favorite color",
+      "text": "Keshav's favorite color is green.",
       "entities": ["keshav"],
-      "tags": ["personal", "breakfast", "waffles", "chicken", "bbq", "maple syrup", "random fact"]
+      "tags": ["personal", "random fact"]
+    },
+    {
+      "id": "breakfast-waffles",
+      "title": "Breakfast preference",
+      "text": "Keshav once had waffles and chicken with BBQ and maple syrup for breakfast—and apparently enjoyed it enough to mention it.",
+      "entities": ["keshav"],
+      "tags": ["personal", "food", "random fact"]
     },
     {
       "id": "two-fridges",
-      "title": "Kitchen fridge fact",
-      "text": "Keshav has two fridges in his kitchen.",
+      "title": "Has two fridges in the kitchen",
+      "text": "Keshav has two fridges in his kitchen. Practical or passion for cold storage—unclear, but it's a thing.",
       "entities": ["keshav"],
-      "tags": ["personal", "kitchen", "fridges", "fridge", "random fact"]
+      "tags": ["personal", "random fact"]
     }
   ]
 }

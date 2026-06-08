@@ -50,8 +50,13 @@ type BrainEdge = {
 
 const ENTITY_COLORS: Record<string, string> = {
   company: "#6ddf95",
-  dog: "#f4d35e",
-  experience: "#93b7ff"
+  institution: "#a8d8ff",
+  experience: "#93b7ff",
+  expertise: "#ffc8e0",
+  project: "#ffd699",
+  interest: "#c9bfff",
+  value: "#ff9d7b",
+  dog: "#f4d35e"
 };
 
 function buildBrainGraph(graph: MemoryGraph) {
@@ -79,13 +84,16 @@ function buildBrainGraph(graph: MemoryGraph) {
       Math.sin(angle) * radius
     ];
 
+    const isBeauty = entity.id === "beauty";
+    const size = isBeauty ? 1.8 : 0.18;
+
     nodes.push({
       id: entity.id,
       label: entity.name,
       kind: "entity",
       position,
       color: ENTITY_COLORS[entity.type] || "#9be7ff",
-      size: 0.18
+      size
     });
   });
 
