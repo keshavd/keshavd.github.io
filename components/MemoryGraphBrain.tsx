@@ -85,7 +85,7 @@ function buildBrainGraph(graph: MemoryGraph) {
     ];
 
     const isBeauty = entity.id === "beauty";
-    const size = isBeauty ? 1.8 : 0.18;
+    const size = isBeauty ? 0.6 : 0.18;
 
     nodes.push({
       id: entity.id,
