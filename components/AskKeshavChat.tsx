@@ -146,7 +146,9 @@ const synonyms = new Map<string, string[]>([
   ["investor", ["investor", "investor", "pitch", "funding", "investment", "capital"]],
   ["infrastructure", ["infrastructure", "infrastructure", "terraform", "iac", "scalable", "deployment"]],
   ["data", ["data", "snowflake", "qdrant", "pinecone", "neo4j", "databases", "vector"]],
-  ["scale", ["scale", "scalable", "scaling", "infrastructure", "terraform", "production"]]
+  ["scale", ["scale", "scalable", "scaling", "infrastructure", "terraform", "production"]],
+  ["projects", ["projects", "projects", "products", "built", "created", "products"]],
+  ["sanofi", ["sanofi", "sanofi", "pharma", "pharmaceutical", "enterprise"]]
 ]);
 
 function expandSynonyms(term: string): string[] {
@@ -291,10 +293,15 @@ function searchMemoryGraph(question: string, memoryGraph: MemoryGraph[]) {
   const scored = documents
     .map((document) => {
       const haystack = tokenize(document.searchableText);
-      const score = terms.reduce(
+      const baseScore = terms.reduce(
         (total, term) => total + (termMatches(term, haystack) ? 1 : 0),
         0
       );
+
+      // Boost memory documents (they have richer narratives)
+      const isMemory = document.label.startsWith("Memory:");
+      const boost = isMemory ? 1.5 : 1;
+      const score = baseScore * boost;
 
       return { document, score };
     })
