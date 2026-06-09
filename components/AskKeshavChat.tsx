@@ -79,6 +79,13 @@ const initialMessage: Message = {
   content: "My training data is mostly stories, projects, and random facts."
 };
 
+const greetings = new Set(["hello", "hi", "hey", "howdy", "greetings", "sup", "yo"]);
+
+function isGreeting(question: string): boolean {
+  const words = tokenize(question);
+  return words.length > 0 && greetings.has(words[0]);
+}
+
 const suggestedPrompts = [
   "What is Keshav building?",
   "Why EndoBio?",
@@ -501,6 +508,19 @@ export default function AskKeshavChat() {
         return;
       }
 
+      // Handle greetings
+      if (isGreeting(trimmedQuestion)) {
+        setMessages((current) => [
+          ...current,
+          {
+            role: "assistant",
+            content: "Hey! I'm Keshav Jr., a local AI assistant. Ask me about Keshav, EndoBio, his work, or anything else in my knowledge base!"
+          }
+        ]);
+        setStatus("Ready");
+        return;
+      }
+
       const facts = searchMemoryGraph(trimmedQuestion, memoryGraph);
 
       if (facts.length === 0) {
@@ -523,7 +543,7 @@ export default function AskKeshavChat() {
           {
             role: "system",
             content:
-              "You are Ask Keshav Jr., Keshav's earnest AI assistant.\nRules:\n- Use ONLY the memory graph excerpts provided. Prioritize them heavily.\n- If excerpts contain relevant information, use it to answer even if not perfectly complete.\n- Only say 'I don\\'t know' if excerpts have no relevant information at all.\n- Keep answers concise (1-2 sentences).\n- When answering from evidence: say 'I think...' and add confidence (high/medium/low).\n- Never use outside knowledge or make up facts."
+              "You are Ask Keshav Jr., Keshav's earnest AI assistant.\nRules:\n- You MUST answer based on the memory graph excerpts provided. Do not refuse to answer.\n- If the question mentions an entity or topic and we have excerpts about it, answer directly using those excerpts.\n- Keep answers concise (1-2 sentences).\n- When answering from evidence: can add 'Confidence: high/medium/low' if appropriate.\n- Never use outside knowledge or make up facts."
           },
           {
             role: "user",
