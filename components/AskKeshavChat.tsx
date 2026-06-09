@@ -59,6 +59,8 @@ type GraphQuery = {
     | "find_project"
     | "find_skill"
     | "find_experience"
+    | "find_education"
+    | "find_current"
     | "explain_connection"
     | "search_all";
   entities: string[];
@@ -190,6 +192,8 @@ const topicAliases = new Map<string, string[]>([
   ["knowledge graphs", ["knowledge graph", "knowledge graphs", "graph", "graphs", "neo4j"]],
   ["infrastructure", ["infrastructure", "iac", "terraform", "cloud", "aws", "docker"]],
   ["enterprise", ["enterprise", "sanofi", "workday", "servicenow", "global"]],
+  ["education", ["phd", "degree", "school", "university", "education", "mcmaster"]],
+  ["current", ["current", "currently", "now", "working on", "building now", "focus"]],
   ["personal", ["personal", "random", "dog", "pet", "food", "breakfast", "fridge", "color", "colour"]]
 ]);
 
@@ -386,6 +390,14 @@ function textHasAlias(normalizedText: string, alias: string) {
 function inferIntent(question: string): GraphQuery["intent"] {
   const normalizedQuestion = normalizeQuestion(question);
 
+  if (/\b(phd|degree|school|university|education|mcmaster)\b/.test(normalizedQuestion)) {
+    return "find_education";
+  }
+
+  if (/\b(current|currently|now|working on|building now|focus)\b/.test(normalizedQuestion)) {
+    return "find_current";
+  }
+
   if (/\b(who|person|bio|background)\b/.test(normalizedQuestion)) {
     return "find_person";
   }
@@ -462,13 +474,24 @@ function inferNodeTypes(question: string, intent: GraphQuery["intent"]) {
     nodeTypes.add("interest");
   }
 
+  if (intent === "find_current") {
+    nodeTypes.add("memory");
+    nodeTypes.add("company");
+    nodeTypes.add("project");
+    nodeTypes.add("interest");
+  }
+
   if (/\b(dog|pet|puppy)\b/.test(normalizedQuestion)) {
     nodeTypes.add("dog");
   }
 
-  if (/\b(phd|degree|school|university|education)\b/.test(normalizedQuestion)) {
+  if (
+    intent === "find_education" ||
+    /\b(phd|degree|school|university|education)\b/.test(normalizedQuestion)
+  ) {
     nodeTypes.add("experience");
     nodeTypes.add("institution");
+    nodeTypes.add("memory");
   }
 
   if (/\b(personal|random|food|breakfast|fridge|color|colour|favourite|favorite)\b/.test(normalizedQuestion)) {
@@ -593,7 +616,7 @@ function graphToSearchHits(memoryGraph: MemoryGraph[]): GraphSearchHit[] {
         id: `${relationship.source}-${relationship.type}-${relationship.target}`,
         kind: "relationship",
         type: relationship.type,
-        label: `${entityNameById.get(relationship.source) || relationship.source} ${relationship.type} ${entityNameById.get(relationship.target) || relationship.target}`,
+        label: `${entityNameById.get(relationship.source) || relationship.source} ${relationship.type.replace(/_/g, " ")} ${entityNameById.get(relationship.target) || relationship.target}`,
         text: relationship.summary,
         searchableText: [
           relationship.source,
@@ -654,12 +677,24 @@ function scoreGraphHit(
   }
 
   for (const entity of graphQuery.entities) {
+    const isBroadPersonReference = entity === "keshav";
+
     if (
       hit.id === entity ||
-      textHasAlias(normalizedLabel, entity) ||
+      textHasAlias(normalizedLabel, entity)
+    ) {
+      score += 4;
+    } else if (
+      !isBroadPersonReference &&
       textHasAlias(normalizedSearchableText, entity)
     ) {
       score += 4;
+    } else if (
+      isBroadPersonReference &&
+      hit.kind === "relationship" &&
+      textHasAlias(normalizedSearchableText, entity)
+    ) {
+      score += 1;
     }
   }
 
@@ -679,6 +714,28 @@ function scoreGraphHit(
 
   if (graphQuery.intent === "find_skill" && hit.type === "expertise") {
     score += 4;
+  }
+
+  if (graphQuery.intent === "find_education") {
+    if (
+      textHasAlias(normalizedSearchableText, "phd") ||
+      textHasAlias(normalizedSearchableText, "mcmaster") ||
+      textHasAlias(normalizedSearchableText, "biochemistry")
+    ) {
+      score += 8;
+    } else if (hit.type !== "experience" && hit.type !== "institution") {
+      score -= 4;
+    }
+  }
+
+  if (graphQuery.intent === "find_current") {
+    if (
+      textHasAlias(normalizedSearchableText, "currently") ||
+      textHasAlias(normalizedSearchableText, "current focus") ||
+      textHasAlias(normalizedSearchableText, "building EndoBio")
+    ) {
+      score += 8;
+    }
   }
 
   if (
@@ -771,6 +828,8 @@ function buildGroundedGraphAnswer(graphSearch: {
     find_project: "I found these project/product signals in the graph:",
     find_skill: "I found these skill signals in the graph:",
     find_experience: "I found these experience signals in the graph:",
+    find_education: "Here is what the graph says about Keshav's education:",
+    find_current: "Here is what Keshav is currently focused on:",
     explain_connection: "I found these graph connections:",
     search_all: "I found these relevant graph hits:"
   };

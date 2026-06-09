@@ -157,11 +157,9 @@ a {
 .assistant-info-popover {
   position: absolute;
   top: 36px;
-  left: 50%;
-  transform: translateX(-100%);
+  right: 0;
   z-index: 10000;
-  width: 340px;
-  max-width: calc(100vw - 32px);
+  width: min(340px, calc(100vw - 32px));
   padding: 12px 14px;
   overflow: visible;
   border: 1px solid rgb(0 0 0 / 14%);
@@ -188,8 +186,8 @@ a {
   font-weight: 700;
 }
 
-.ask-invitation p,
-.chat-header p {
+.ask-invitation > p,
+.chat-header > div > p {
   margin: 7px 0 0;
   color: rgb(0 0 0 / 68%);
   font-size: 0.9rem;
@@ -297,7 +295,7 @@ a {
   font-size: 1.35rem;
 }
 
-.chat-header p {
+.chat-header > div > p {
   min-height: 1.1rem;
   max-width: 280px;
   overflow: hidden;
@@ -562,9 +560,8 @@ a {
   }
 
   .assistant-info-popover {
-    left: 50%;
-    transform: translateX(-100%);
-    width: calc(100vw - 48px);
+    right: -6px;
+    width: min(340px, calc(100vw - 40px));
   }
 
   .chat-panel {
