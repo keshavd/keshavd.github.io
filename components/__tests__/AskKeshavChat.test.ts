@@ -81,9 +81,9 @@ describe("Ask Keshav Jr. Knowledge Base - Investor Questions", () => {
 
   describe("About You - Personal & Background Questions", () => {
     it("should answer 'Who are you?'", () => {
-      expect(hasEntity(kb, "keshav")).toBe(true);
       expect(kb.person.name).toBe("Keshav Dial");
       expect(kb.person.headline).toBe("Doctor.Builder.Entrepreneur");
+      expect(kb.person.bio).toBeDefined();
     });
 
     it("should answer 'What's your background?'", () => {
