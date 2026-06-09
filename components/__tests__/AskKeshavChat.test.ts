@@ -12,6 +12,9 @@ type MemoryGraph = {
     name: string;
     headline: string;
     current_focus: string[];
+    bio?: string;
+    location?: string;
+    contact?: string;
   };
   entities: Array<{
     id: string;
@@ -19,6 +22,19 @@ type MemoryGraph = {
     name: string;
     summary: string;
     description?: string;
+    founder?: string;
+    stage?: string;
+    problem_statement?: string;
+    vision?: string;
+    unfair_advantages?: string;
+    key_technologies?: string[];
+    market_opportunity?: string;
+    institution?: string;
+    field?: string;
+    owner?: string;
+    builder?: string;
+    scope?: string;
+    tags: string[];
   }>;
   relationships: Array<{
     source: string;

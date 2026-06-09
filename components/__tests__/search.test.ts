@@ -6,10 +6,48 @@ import { describe, it, expect } from "vitest";
  */
 
 type MemoryGraph = {
-  person: { id: string; name: string; headline: string; current_focus: string[] };
-  entities: Array<{ id: string; type: string; name: string; summary: string; description?: string }>;
-  relationships: Array<{ source: string; target: string; type: string; summary: string }>;
-  memories: Array<{ id: string; title: string; text: string; entities: string[]; tags: string[] }>;
+  person: {
+    id: string;
+    name: string;
+    headline: string;
+    current_focus: string[];
+    bio?: string;
+    location?: string;
+    contact?: string;
+  };
+  entities: Array<{
+    id: string;
+    type: string;
+    name: string;
+    summary: string;
+    description?: string;
+    founder?: string;
+    stage?: string;
+    problem_statement?: string;
+    vision?: string;
+    unfair_advantages?: string;
+    key_technologies?: string[];
+    market_opportunity?: string;
+    institution?: string;
+    field?: string;
+    owner?: string;
+    builder?: string;
+    scope?: string;
+    tags: string[];
+  }>;
+  relationships: Array<{
+    source: string;
+    target: string;
+    type: string;
+    summary: string;
+  }>;
+  memories: Array<{
+    id: string;
+    title: string;
+    text: string;
+    entities: string[];
+    tags: string[];
+  }>;
 };
 
 const stopWords = new Set([
