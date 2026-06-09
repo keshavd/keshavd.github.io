@@ -356,6 +356,13 @@
       "tags": ["science", "technology", "differentiation", "molecular"]
     },
     {
+      "id": "sanofi-milestones",
+      "title": "Key milestones and accomplishments at Sanofi",
+      "text": "At Sanofi, Keshav's major accomplishments include: (1) Solo-built Sanofi Concierge POC, an internal agentic system that was then scaled and deployed globally across the company. (2) Architected an integrated biomedical knowledge graph platform combining GeneCards, MalaCards, STRING and proprietary data in Neo4j. (3) Built and led team scaling of an AI-augmented knowledge management system integrating Claude API with SMEs, Workday, and ServiceNow - a production system now widely used. (4) Designed end-to-end AI systems spanning frontend, backend, ML, and cloud infrastructure. (5) Created reusable document-to-text and ingestion pipelines using serverless infrastructure. These accomplishments demonstrate progression from individual contributor to team leader and product engineer.",
+      "entities": ["keshav", "sanofi-pharma", "concierge-project", "sanofi-knowledge-system"],
+      "tags": ["sanofi", "accomplishments", "milestones", "achievement", "track record"]
+    },
+    {
       "id": "favorite-color",
       "title": "Favorite color",
       "text": "Keshav's favorite color is green.",

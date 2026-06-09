@@ -148,7 +148,9 @@ const synonyms = new Map<string, string[]>([
   ["data", ["data", "snowflake", "qdrant", "pinecone", "neo4j", "databases", "vector"]],
   ["scale", ["scale", "scalable", "scaling", "infrastructure", "terraform", "production"]],
   ["projects", ["projects", "projects", "products", "built", "created", "products"]],
-  ["sanofi", ["sanofi", "sanofi", "pharma", "pharmaceutical", "enterprise"]]
+  ["sanofi", ["sanofi", "sanofi", "pharma", "pharmaceutical", "enterprise"]],
+  ["milestones", ["milestones", "accomplishments", "achievement", "built", "created"]],
+  ["accomplishments", ["accomplishments", "achievement", "milestones", "built", "products"]]
 ]);
 
 function expandSynonyms(term: string): string[] {
