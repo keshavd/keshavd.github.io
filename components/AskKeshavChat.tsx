@@ -46,11 +46,11 @@ type MemoryGraph = {
   }>;
 };
 
-type SearchDocument = {
+type KBDocument = {
   id: string;
   label: string;
   text: string;
-  searchableText: string;
+  vector: number[];
 };
 
 type Message = {
@@ -82,8 +82,7 @@ const initialMessage: Message = {
 const greetings = new Set(["hello", "hi", "hey", "howdy", "greetings", "sup", "yo"]);
 
 function isGreeting(question: string): boolean {
-  const words = tokenize(question);
-  return words.length > 0 && greetings.has(words[0]);
+  return greetings.has(question.toLowerCase().split(/\s+/)[0]);
 }
 
 const suggestedPrompts = [
@@ -93,270 +92,74 @@ const suggestedPrompts = [
   "Projects"
 ];
 
-const stopWords = new Set([
-  "a",
-  "about",
-  "am",
-  "an",
-  "and",
-  "are",
-  "as",
-  "at",
-  "be",
-  "did",
-  "do",
-  "does",
-  "for",
-  "from",
-  "has",
-  "have",
-  "he",
-  "his",
-  "how",
-  "i",
-  "in",
-  "is",
-  "it",
-  "keshav",
-  "me",
-  "my",
-  "of",
-  "on",
-  "or",
-  "the",
-  "to",
-  "was",
-  "what",
-  "when",
-  "where",
-  "who",
-  "why",
-  "with"
-]);
-
-const synonyms = new Map<string, string[]>([
-  ["made", ["made", "founded", "built", "created", "established", "building"]],
-  ["building", ["building", "building", "founder", "built", "founded", "created"]],
-  ["founder", ["founder", "made", "founded", "built", "created"]],
-  ["built", ["built", "made", "founded", "created", "developed"]],
-  ["created", ["created", "made", "founded", "built"]],
-  ["work", ["work", "worked", "experience", "role", "job"]],
-  ["experience", ["experience", "worked", "work", "role", "job"]],
-  ["focus", ["focus", "focused", "focus", "working", "building"]],
-  ["knowledge", ["knowledge", "know", "knowing", "expertise", "understand"]],
-  ["graph", ["graph", "kg", "knowledge", "graphs"]],
-  ["current", ["current", "now", "focus", "building", "working"]],
-  ["advantage", ["advantage", "advantage", "differentiation", "unfair", "defensibility", "moat"]],
-  ["market", ["market", "opportunity", "size", "tam", "addressable"]],
-  ["problem", ["problem", "problem", "challenge", "issue", "pain", "gap"]],
-  ["qualified", ["qualified", "qualified", "experienced", "skilled", "background", "expertise"]],
-  ["investor", ["investor", "investor", "pitch", "funding", "investment", "capital"]],
-  ["infrastructure", ["infrastructure", "infrastructure", "terraform", "iac", "scalable", "deployment"]],
-  ["data", ["data", "snowflake", "qdrant", "pinecone", "neo4j", "databases", "vector"]],
-  ["scale", ["scale", "scalable", "scaling", "infrastructure", "terraform", "production"]],
-  ["projects", ["projects", "projects", "products", "built", "created", "products"]],
-  ["sanofi", ["sanofi", "sanofi", "pharma", "pharmaceutical", "enterprise"]],
-  ["milestones", ["milestones", "accomplishments", "achievement", "built", "created"]],
-  ["accomplishments", ["accomplishments", "achievement", "milestones", "built", "products"]]
-]);
-
-function expandSynonyms(term: string): string[] {
-  return synonyms.get(term) || [term];
-}
-
-function tokenize(value: string) {
-  return value
-    .toLowerCase()
-    .replace(/[^a-z0-9\s]/g, " ")
-    .split(/\s+/)
-    .filter((term) => term.length > 2 && !stopWords.has(term));
-}
-
-function editDistance(first: string, second: string) {
-  const distances = Array.from({ length: first.length + 1 }, (_, row) =>
-    Array.from({ length: second.length + 1 }, (_, column) =>
-      row === 0 ? column : column === 0 ? row : 0
-    )
-  );
-
-  for (let row = 1; row <= first.length; row += 1) {
-    for (let column = 1; column <= second.length; column += 1) {
-      const cost = first[row - 1] === second[column - 1] ? 0 : 1;
-      distances[row][column] = Math.min(
-        distances[row - 1][column] + 1,
-        distances[row][column - 1] + 1,
-        distances[row - 1][column - 1] + cost
-      );
-    }
-  }
-
-  return distances[first.length][second.length];
-}
-
-function termMatches(term: string, haystack: string[]) {
-  const termSynonyms = expandSynonyms(term);
-
-  return haystack.some((candidate) => {
-    if (candidate === term || termSynonyms.includes(candidate)) {
-      return true;
-    }
-
-    if (term.length < 5 || candidate.length < 5) {
-      return false;
-    }
-
-    return editDistance(term, candidate) <= 2;
-  });
-}
-
-function graphToSearchDocuments(memoryGraph: MemoryGraph[]) {
+function graphToKBDocuments(memoryGraph: MemoryGraph[]): Omit<KBDocument, "vector">[] {
   return memoryGraph.flatMap((graph) => {
-    const personDocument: SearchDocument = {
+    const docs: Omit<KBDocument, "vector">[] = [];
+
+    // Person document
+    docs.push({
       id: graph.person.id,
       label: `Person: ${graph.person.name}`,
-      text: `${graph.person.name} is ${graph.person.headline}. Current focus: ${graph.person.current_focus.join(", ")}.`,
-      searchableText: [
-        graph.person.id,
-        graph.person.name,
-        graph.person.headline,
-        ...graph.person.current_focus
-      ].join(" ")
-    };
-
-    const entityDocuments = graph.entities.map((entity) => ({
-      id: entity.id,
-      label: `Entity: ${entity.name}`,
-      text: `${entity.name} (${entity.type}): ${entity.description || entity.summary}`,
-      searchableText: [
-        entity.id,
-        entity.type,
-        entity.name,
-        entity.summary,
-        entity.description || "",
-        entity.founder || "",
-        entity.builder || "",
-        entity.field || "",
-        entity.stage || "",
-        entity.vision || "",
-        entity.problem_statement || "",
-        entity.unfair_advantages || "",
-        entity.market_opportunity || "",
-        entity.key_technologies?.join(" ") || "",
-        ...entity.tags
-      ]
-        .filter(Boolean)
-        .join(" ")
-    }));
-
-    const relationshipDocuments = graph.relationships.map((relationship) => {
-      const relationshipSynonyms: Record<string, string> = {
-        "founder": "founder built created made established",
-        "built": "built founder created made developed",
-        "founded": "founder built created made established",
-        "has_expertise_in": "expertise knows expert skilled proficient",
-        "applies_expertise": "applies expertise uses knowledge leverages",
-        "worked_at": "worked experience job role employed"
-      };
-
-      const synonymsForType = relationshipSynonyms[relationship.type] || relationship.type;
-
-      return {
-        id: `${relationship.source}-${relationship.type}-${relationship.target}`,
-        label: `Relationship: ${relationship.source} ${relationship.type} ${relationship.target}`,
-        text: `${relationship.source} ${relationship.type} ${relationship.target}: ${relationship.summary}`,
-        searchableText: [
-          relationship.source,
-          relationship.target,
-          relationship.type,
-          synonymsForType,
-          relationship.summary
-        ].join(" ")
-      };
+      text: `${graph.person.name} is ${graph.person.headline}. Current focus: ${graph.person.current_focus.join(", ")}. ${graph.person.bio || ""}`
     });
 
-    const memoryDocuments = graph.memories.map((memory) => ({
-      id: memory.id,
-      label: `Memory: ${memory.title}`,
-      text: `${memory.title}: ${memory.text}`,
-      searchableText: [
-        memory.id,
-        memory.title,
-        memory.text,
-        ...memory.entities,
-        ...memory.tags
-      ].join(" ")
-    }));
+    // Entity documents
+    graph.entities.forEach((entity) => {
+      docs.push({
+        id: entity.id,
+        label: `Entity: ${entity.name}`,
+        text: `${entity.name} (${entity.type}): ${entity.description || entity.summary}. ${entity.vision || ""} ${entity.problem_statement || ""} ${entity.unfair_advantages || ""} ${entity.market_opportunity || ""}`
+      });
+    });
 
-    return [
-      personDocument,
-      ...entityDocuments,
-      ...relationshipDocuments,
-      ...memoryDocuments
-    ];
+    // Relationship documents
+    graph.relationships.forEach((relationship) => {
+      docs.push({
+        id: `rel-${relationship.source}-${relationship.target}`,
+        label: `Relationship: ${relationship.source} ${relationship.type} ${relationship.target}`,
+        text: `${relationship.source} ${relationship.type} ${relationship.target}: ${relationship.summary}`
+      });
+    });
+
+    // Memory documents (richer content)
+    graph.memories.forEach((memory) => {
+      docs.push({
+        id: memory.id,
+        label: `Memory: ${memory.title}`,
+        text: `${memory.title}: ${memory.text}`
+      });
+    });
+
+    return docs;
   });
 }
 
-function searchMemoryGraph(question: string, memoryGraph: MemoryGraph[]) {
-  const terms = tokenize(question);
-  const documents = graphToSearchDocuments(memoryGraph);
-  const scored = documents
-    .map((document) => {
-      const haystack = tokenize(document.searchableText);
-      const baseScore = terms.reduce(
-        (total, term) => total + (termMatches(term, haystack) ? 1 : 0),
-        0
-      );
+async function embedTexts(texts: string[]): Promise<number[][]> {
+  const { pipeline } = await import("@xenova/transformers");
+  const embedder = await pipeline("feature-extraction", "Xenova/all-MiniLM-L6-v2");
+  const embeddings = await embedder(texts, { pooling: "mean" });
 
-      // Boost memory documents (they have richer narratives)
-      const isMemory = document.label.startsWith("Memory:");
-      const boost = isMemory ? 1.5 : 1;
-      const score = baseScore * boost;
-
-      return { document, score };
-    })
-    .filter(({ score }) => score > 0)
-    .sort((a, b) => b.score - a.score);
-
-  return scored
-    .slice(0, 5)
-    .map(({ document }) => `${document.label}: ${document.text}`);
-}
-
-function findMentionedEntity(question: string, memoryGraph: MemoryGraph[]) {
-  const terms = tokenize(question);
-
-  for (const graph of memoryGraph) {
-    const entity = graph.entities.find((candidate) => {
-      const entityTerms = tokenize(
-        [candidate.id, candidate.name, ...candidate.tags].join(" ")
-      );
-
-      return terms.some((term) => termMatches(term, entityTerms));
-    });
-
-    if (entity) {
-      return entity;
+  // Convert to array of arrays
+  return Array.from(embeddings.data).reduce((chunks: number[][], _, i, arr) => {
+    if (i % 384 === 0) {
+      chunks.push(Array.from(arr.slice(i, i + 384)));
     }
-  }
-
-  return null;
+    return chunks;
+  }, []);
 }
 
-function getDirectGraphAnswer(question: string, memoryGraph: MemoryGraph[]) {
-  const lowerQuestion = question.toLowerCase();
-  const mentionedEntity = findMentionedEntity(question, memoryGraph);
+function cosineSimilarity(a: number[], b: number[]): number {
+  let dotProduct = 0;
+  let normA = 0;
+  let normB = 0;
 
-  if (
-    mentionedEntity &&
-    (lowerQuestion.includes("who") || lowerQuestion.includes("what"))
-  ) {
-    return {
-      content: `I think ${mentionedEntity.name} is ${mentionedEntity.summary}`,
-      confidence: "high" as const
-    };
+  for (let i = 0; i < a.length; i++) {
+    dotProduct += a[i] * b[i];
+    normA += a[i] * a[i];
+    normB += b[i] * b[i];
   }
 
-  return null;
+  return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
 }
 
 function cleanModelAnswer(answer: string) {
@@ -429,6 +232,8 @@ export default function AskKeshavChat() {
   const [showBrain, setShowBrain] = useState(false);
   const memoryGraphRef = useRef<MemoryGraph[] | null>(null);
   const engineRef = useRef<WebLLMEngine | null>(null);
+  const dbRef = useRef<any>(null);
+  const documentsRef = useRef<KBDocument[] | null>(null);
 
   const canSubmit = useMemo(
     () => input.trim().length > 0 && !isAnswering,
@@ -449,6 +254,48 @@ export default function AskKeshavChat() {
     const graphs = [data];
     memoryGraphRef.current = graphs;
     return graphs;
+  }
+
+  async function initializeVectorDB() {
+    if (dbRef.current) {
+      return dbRef.current;
+    }
+
+    setStatus("Building search index");
+    const memoryGraph = await loadMemoryGraph();
+    const docs = graphToKBDocuments(memoryGraph);
+
+    // Embed all documents
+    const texts = docs.map((d) => d.text);
+    const embeddings = await embedTexts(texts);
+    const docsWithVectors: KBDocument[] = docs.map((doc, i) => ({
+      ...doc,
+      vector: embeddings[i]
+    }));
+
+    documentsRef.current = docsWithVectors;
+    dbRef.current = { initialized: true };
+    setStatus("Ready");
+    return dbRef.current;
+  }
+
+  async function searchVectorDB(question: string): Promise<string[]> {
+    if (!dbRef.current) {
+      await initializeVectorDB();
+    }
+
+    const questionEmbedding = (await embedTexts([question]))[0];
+    const docs = documentsRef.current!;
+
+    const scored = docs.map((doc) => ({
+      doc,
+      similarity: cosineSimilarity(questionEmbedding, doc.vector)
+    }));
+
+    return scored
+      .sort((a, b) => b.similarity - a.similarity)
+      .slice(0, 5)
+      .map((s) => `${s.doc.label}: ${s.doc.text}`);
   }
 
   async function loadEngine() {
@@ -492,22 +339,6 @@ export default function AskKeshavChat() {
     ]);
 
     try {
-      const memoryGraph = await loadMemoryGraph();
-      const directAnswer = getDirectGraphAnswer(trimmedQuestion, memoryGraph);
-
-      if (directAnswer) {
-        setMessages((current) => [
-          ...current,
-          {
-            role: "assistant",
-            content: directAnswer.content,
-            confidence: directAnswer.confidence
-          }
-        ]);
-        setStatus("Ready");
-        return;
-      }
-
       // Handle greetings
       if (isGreeting(trimmedQuestion)) {
         setMessages((current) => [
@@ -521,7 +352,7 @@ export default function AskKeshavChat() {
         return;
       }
 
-      const facts = searchMemoryGraph(trimmedQuestion, memoryGraph);
+      const facts = await searchVectorDB(trimmedQuestion);
 
       if (facts.length === 0) {
         setMessages((current) => [
